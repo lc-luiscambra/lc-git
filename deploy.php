@@ -9,7 +9,6 @@
  */
  
 include ('config.php');
-define('__SSH_ROUTE__', '/var/www/vhosts/dns73200.phdns12.es/httpdocs/'.$_GET['folder']);
 
 /**
  * Convenience function for sending emails
