@@ -9,6 +9,8 @@
  */
  
 include ('config.php');
+define('__SSH_ROUTE__', '/var/www/vhosts/dns73200.phdns12.es/httpdocs/'.$_GET['folder']);
+
 /**
  * Convenience function for sending emails
  *
@@ -38,24 +40,12 @@ function sendEmail($success, $message)
     return true;
 }
 try {
-    
-    
+      
     /* ssh into the local server*/
     
     $connection = ssh2_connect(__SSH_SERVER__, __SSH_PORT__);
     /*die ('LC_TEST');*/
     $authSuccess = ssh2_auth_password($connection, __SSH_USER__, __SSH_PWD__);
-    
-    /*die ('LC_TEST'.' - '.__SSH_SERVER__.' : '.__SSH_PORT__);*/
-    /*$sshSession = ssh2_connect(__SSH_SERVER__, __SSH_PORT__);*/
-    /*die ('LC_TEST');*/
-    /*$authSuccess = ssh2_auth_pubkey_file(
-        $sshSession,
-        __SSH_USER__,
-        '/'.__SSH_USER__.'/.ssh/'.__KEYPAIR_NAME__.'.pub',
-        '/'.__SSH_USER__.'/.ssh/'.__KEYPAIR_NAME__,
-        __KEYPAIR_PASSPHRASE__
-    );*/
     
     if (!$authSuccess) {
         throw new Exception('SSH authentication failure');
